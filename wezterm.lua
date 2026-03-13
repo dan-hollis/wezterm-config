@@ -1,8 +1,12 @@
-local wezterm = require 'wezterm' ---@type Wezterm
-local config = wezterm.config_builder() ---@type Config
+---@type Wezterm
+local wezterm = require('wezterm')
+---@type Config
+local config = wezterm.config_builder()
 
+---@type CmdPicker
 local cmdpicker = wezterm.plugin.require('https://github.com/abidibo/wezterm-cmdpicker')
 local smart_ssh = wezterm.plugin.require("https://github.com/DavidRR-F/smart_ssh.wezterm")
+---@type WezTmux
 local tmux = wezterm.plugin.require('https://github.com/sei40kr/wez-tmux')
 
 -- Input bindings
@@ -18,7 +22,8 @@ smart_ssh.apply_to_config(config)
 tmux.apply_to_config(config, {})
 require('tabline')
 require('session')(config, cmdpicker)
-wezterm.plugin.require('https://gitlab.com/xarvex/presentation.wez').apply_to_config(config)
+local presentation = wezterm.plugin.require('https://gitlab.com/xarvex/presentation.wez') ---@type PresentationWez
+presentation.apply_to_config(config)
 --require('ai_commander')(config, cmdpicker)
 --require('quota')(config)
 

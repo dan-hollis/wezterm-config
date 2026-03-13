@@ -1,7 +1,9 @@
----@diagnostic disable-next-line: assign-type-mismatch
-local wezterm = require 'wezterm' ---@type Wezterm
+---@type Wezterm
+local wezterm = require('wezterm')
 
+---@type SWS
 local workspace_switcher = wezterm.plugin.require('https://github.com/MLFlexer/smart_workspace_switcher.wezterm')
+---@type Resurrect
 local resurrect = wezterm.plugin.require('https://github.com/MLFlexer/resurrect.wezterm')
 
 resurrect.state_manager.periodic_save({
@@ -34,7 +36,7 @@ wezterm.on('smart_workspace_switcher.workspace_switcher.selected', function(wind
 end)
 
 ---@param config Config
----@param cmdpicker table
+---@param cmdpicker CmdPicker
 return function(config, cmdpicker)
   cmdpicker.add_keys(config, {
     { key = 'b', mods = 'LEADER|SHIFT', action = workspace_switcher.switch_workspace(),         desc = 'Switch workspace' },

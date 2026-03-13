@@ -4,3 +4,4 @@ constants.lua
 plugins/
 schema.json
 .vscode
+wezterm-types/

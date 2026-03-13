@@ -1,7 +1,10 @@
----@diagnostic disable-next-line: assign-type-mismatch
-local wezterm = require 'wezterm' ---@type Wezterm
+---@type Wezterm
+local wezterm = require('wezterm')
 
+---@type TablineWez
 local tabline = wezterm.plugin.require('https://github.com/michaelbrusegard/tabline.wez')
+
+local helpers = require('helpers')
 
 tabline.setup({
   options = {
@@ -50,9 +53,7 @@ tabline.setup({
       'smart_ssh',
       events = {
         show = 'smart_ssh.fuzzy_selector.selected',
-        callback = function(window, pane, id)
-          window:active_tab():set_title(id)
-        end
+        callback = helpers.set_tab_title
       }
     }
   }

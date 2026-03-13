@@ -1,12 +1,13 @@
----@diagnostic disable-next-line: assign-type-mismatch
-local wezterm = require 'wezterm' ---@type Wezterm
+---@type Wezterm
+local wezterm = require('wezterm')
+
+---@type AICommander
+local ai_plugin = wezterm.plugin.require('https://github.com/dimao/ai-commander.wezterm')
 
 local constants = require('constants')
 
-local ai_plugin = wezterm.plugin.require('https://github.com/dimao/ai-commander.wezterm')
-
 ---@param config Config
----@param cmdpicker table
+---@param cmdpicker CmdPicker
 return function(config, cmdpicker)
   ai_plugin.apply_to_config(config, {
     provider = 'anthropic',

@@ -1,6 +1,7 @@
----@diagnostic disable-next-line: assign-type-mismatch
-local wezterm = require 'wezterm' ---@type Wezterm
+---@type Wezterm
+local wezterm = require('wezterm')
 
+---@type QuotaLimit
 local quota = wezterm.plugin.require('https://github.com/EdenGibson/wezterm-quota-limit')
 
 ---@param config Config

@@ -1,8 +1,9 @@
----@diagnostic disable-next-line: assign-type-mismatch
-local wezterm = require 'wezterm' ---@type Wezterm
+---@type Wezterm
+local wezterm = require('wezterm')
 local act = wezterm.action
 
 local smart_ssh = wezterm.plugin.require("https://github.com/DavidRR-F/smart_ssh.wezterm")
+
 local helpers = require('helpers')
 
 local wez_tmux_keys = {
@@ -98,7 +99,7 @@ local global_keys = {
 }
 
 ---@param config Config
----@param cmdpicker table
+---@param cmdpicker CmdPicker
 return function(config, cmdpicker)
   cmdpicker.register(wez_tmux_keys)
   cmdpicker.register({

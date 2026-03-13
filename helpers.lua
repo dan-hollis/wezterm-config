@@ -1,5 +1,14 @@
 local M = {}
 
+---@param window Window
+---@param _ Pane
+---@param id string
+function M.set_tab_title(window, _, id)
+  window:active_tab():set_title(id)
+end
+
+---@param window Window
+---@param pane Pane
 function M.copy_last_output(window, pane)
   local zones = pane:get_semantic_zones('Output')
   if not zones or #zones == 0 then
