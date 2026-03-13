@@ -33,17 +33,27 @@ tabline.setup({
 
     tab_active = {
       { 'index', padding = { left = 1, right = 1 } },
-      { 'tab', padding = { left = 0, right = 1 } },
+      { 'tab',   padding = { left = 0, right = 1 } },
     },
 
     tab_inactive = {
       { 'index', padding = { left = 1, right = 1 } },
-      { 'tab', padding = { left = 0, right = 1 } },
+      { 'tab',   padding = { left = 0, right = 1 } },
     },
 
     tabline_x = {},
     tabline_y = {},
     tabline_z = {},
   },
-  extensions = {}
+  extensions = {
+    {
+      'smart_ssh',
+      events = {
+        show = 'smart_ssh.fuzzy_selector.selected',
+        callback = function(window, pane, id)
+          window:active_tab():set_title(id)
+        end
+      }
+    }
+  }
 })

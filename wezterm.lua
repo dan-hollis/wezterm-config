@@ -11,7 +11,7 @@ config.leader = { key = 'Space', mods = 'CTRL' }
 require('keybindings')(config, cmdpicker)
 
 -- Event handlers
-require('events')
+--require('events')
 
 -- Plugin setup
 smart_ssh.apply_to_config(config)
