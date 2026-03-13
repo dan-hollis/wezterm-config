@@ -1,0 +1,6 @@
+.age/
+constants.lua
+.luarc.json
+plugins/
+schema.json
+.vscode
