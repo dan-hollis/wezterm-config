@@ -54,8 +54,19 @@ local global_keys = {
   { key = 'Y',         mods = 'CTRL|SHIFT', action = wezterm.action_callback(helpers.copy_last_output),    desc = 'Copy last command output' },
 
   -- Tabs
-  { key = 't',         mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab { cwd = wezterm.home_dir, }, desc = 'New tab in home dir' },
-  { key = 'g',         mods = 'CTRL|SHIFT', action = act.SpawnTab('CurrentPaneDomain'),                    desc = 'New tab in current dir' },
+  { key = 't',         mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab { cwd = wezterm.home_dir, domain = 'DefaultDomain' }, desc = 'New tab in home dir' },
+  {
+    key = 'g',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local domain = pane:get_domain_name()
+      window:perform_action(act.SpawnCommandInNewTab { domain = { DomainName = domain } }, pane)
+      if domain:find('^ssh:') then
+        helpers.set_tab_title(window, nil, domain)
+      end
+    end),
+    desc = 'New tab in current domain'
+  },
   { key = 'w',         mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = true },               desc = 'Close current tab' },
   { key = 'w',         mods = 'SUPER',      action = act.CloseCurrentTab { confirm = true },               desc = 'Close current tab' },
   {
